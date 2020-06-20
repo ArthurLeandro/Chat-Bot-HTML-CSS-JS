@@ -4,11 +4,6 @@ var knowResponses={
 // "Não":"<iframe width='360' height='275' src='https://www.youtube.com/embed/TQIBx6rgntc'</iframe>",
 "Gostaria de saber algo":"<a href='' class='anchor-in-chat'>Algo</a>",
 "Por favor":"Vamos treinar",
-"Carolina":"Excelente! Agora vamos lá. Você sabe o que é o treinamento de Boas Práticas de Fabricação? Me informe o número correspondente a sua resposta. (1 para sim ,2 para não)",
-"Arthur":"Excelente! Agora vamos lá. Você sabe o que é o treinamento de Boas Práticas de Fabricação? Me informe o número correspondente a sua resposta. (1 para sim ,2 para não)",
-"Thais":"Excelente! Agora vamos lá. Você sabe o que é o treinamento de Boas Práticas de Fabricação? Me informe o número correspondente a sua resposta. (1 para sim ,2 para não)",
-"Laura":"Excelente! Agora vamos lá. Você sabe o que é o treinamento de Boas Práticas de Fabricação? Me informe o número correspondente a sua resposta. (1 para sim ,2 para não)",
-"Ana":"Excelente! Agora vamos lá. Você sabe o que é o treinamento de Boas Práticas de Fabricação? Me informe o número correspondente a sua resposta. (1 para sim ,2 para não)",
 "Obrigado":"Eu que agradeço pela disposição",
 "1":" Muito bem! Sinal de que você está antenado quanto às normas da empresa. Você sabe qual a importância desse treinamento?",
 "2":"Poxa, que pena! Nós falamos tanto dele com todos. Você sabe qual a importância desse treinamento? (Sim ou Não)",
@@ -31,6 +26,8 @@ function talk(){
       //criar a resposta do chat
       CreateTheChatView("speach-view",knowResponses[userResponse],null);
     }
+    else if(userResponse == name)
+      CreateTheChatView("speach-view","Excelente " + name + "! Agora vamos lá. Você sabe o que é o treinamento de Boas Práticas de Fabricação? Me informe o número correspondente a sua resposta. (1 para sim ,2 para não)",null);
     else
     CreateTheChatView("speach-view","Não entendi sua resposta, poderia repetir?",null);
   }  
