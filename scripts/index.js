@@ -1,4 +1,5 @@
 var name = null;
+var serialNumber = null;
 var knowResponses={
 // Resposta do individuo : resposta do bot
 // "Não":"<iframe width='360' height='275' src='https://www.youtube.com/embed/TQIBx6rgntc'</iframe>",
@@ -12,6 +13,7 @@ var knowResponses={
 "Obrigado":"Eu que agradeço, pela sua paciência e cordialidade."
 };
 var nameWasTaken = false;
+var serialNumberWasTaken = true;
 function talk(){
   var userResponse = document.getElementById("userBox").value;
   if(!nameWasTaken){
@@ -19,18 +21,29 @@ function talk(){
     nameWasTaken=true;
     console.log("Just took this guy name: " + name + " and I'll update the boolean to: "+ nameWasTaken);
   }
+  if(!serialNumberWasTaken){
+    serialNumber = userResponse;
+    console.log("Just took this guy serialNumber: " + serialNumber + " and I'll update the boolean to: "+ serialNumberWasTaken);
+    serialNumberWasTaken = true;
+    name += " - " + serialNumber;
+  }
   CreateTheChatView("response-view",userResponse,name);
   document.getElementById("userBox").value="";
   if(nameWasTaken){
-    if(userResponse in knowResponses){
-      //criar a resposta do chat
-      CreateTheChatView("speach-view",knowResponses[userResponse],null);
+    if(userResponse == serialNumber){ //conseguiu pegar o valor da matricula
+      setTimeout(function(){CreateTheChatView("speach-view","Agora vamos lá. Você sabe o que é o treinamento de Boas Práticas de Fabricação? Me informe o número correspondente a sua resposta. (1 para sim ,2 para não)",null);},1000);
     }
-    else if(userResponse == name)
-      CreateTheChatView("speach-view","Excelente " + name + "! Agora vamos lá. Você sabe o que é o treinamento de Boas Práticas de Fabricação? Me informe o número correspondente a sua resposta. (1 para sim ,2 para não)",null);
-    else
-    CreateTheChatView("speach-view","Não entendi sua resposta, poderia repetir?",null);
-  }  
+    else if(userResponse in knowResponses){
+      setTimeout(function(){ CreateTheChatView("speach-view",knowResponses[userResponse],null);},1000);
+    }
+    else if(userResponse == name){
+      serialNumberWasTaken = false;
+      setTimeout(function(){CreateTheChatView("speach-view","Excelente " + name + " ! Ótimo. Agora me informe a sua matrícula.",null);},1000);
+    }
+    else{        
+      setTimeout(function(){CreateTheChatView("speach-view","Não entendi sua resposta, poderia repetir?",null);},2000);
+    }  
+  }
 }
 
   function CreateTheChatView(_class,_userResponse,_name){
