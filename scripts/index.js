@@ -49,7 +49,7 @@ function talk(){
     let nameh6 = document.createElement("h6");
     let pResponse = document.createElement("p");
     if(_name == null || _name == undefined){
-      nameh6.innerHTML = "Vilminha";  
+      nameh6.innerHTML = "Vick";  
       pResponse.innerHTML = _userResponse;
     }else{
       nameh6.innerHTML = name;
